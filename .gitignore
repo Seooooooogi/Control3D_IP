@@ -9,7 +9,8 @@ slurm_logs/
 debug/
 notinclude/
 scripts/snap
-scripts/paper 
+scripts/paper
+guidance/adapter/models 
 
 # */validataion
 *csv

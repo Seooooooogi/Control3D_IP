@@ -16,7 +16,7 @@ from . import util
 
 ######################################################################################
 # Smooth pooling / mip computation with linear gradient upscaling
-######################################################################################
+# #####################################################################################
 
 class texture2d_mip(torch.autograd.Function):
     @staticmethod
@@ -35,7 +35,7 @@ class texture2d_mip(torch.autograd.Function):
 # Simple texture class. A texture can be either 
 # - A 3D tensor (using auto mipmaps)
 # - A list of 3D tensors (full custom mip hierarchy)
-########################################################################################################
+# #######################################################################################################
 
 class Texture2D(torch.nn.Module):
      # Initializes a texture from image data.
@@ -103,7 +103,7 @@ class Texture2D(torch.nn.Module):
 ########################################################################################################
 # Helper function to create a trainable texture from a regular texture. The trainable weights are 
 # initialized with texture data as an initial guess
-########################################################################################################
+# #######################################################################################################
 
 def create_trainable(init, res=None, auto_mipmaps=True, min_max=None):
     with torch.no_grad():
@@ -136,7 +136,7 @@ def create_trainable(init, res=None, auto_mipmaps=True, min_max=None):
 
 ########################################################################################################
 # Convert texture to and from SRGB
-########################################################################################################
+# #######################################################################################################
 
 def srgb_to_rgb(texture):
     return Texture2D(list(util.srgb_to_rgb(mip) for mip in texture.getMips()))
@@ -146,7 +146,7 @@ def rgb_to_srgb(texture):
 
 ########################################################################################################
 # Utility functions for loading / storing a texture
-########################################################################################################
+# #######################################################################################################
 
 def _load_mip2D(fn, lambda_fn=None, channels=None):
     imgdata = torch.tensor(util.load_image(fn), dtype=torch.float32, device='cuda')

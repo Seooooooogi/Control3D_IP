@@ -198,7 +198,7 @@ def process_single_image(image_path, depth_estimator, normal_estimator=None):
     out_dir = os.path.dirname(image_path)
     rgba_path = os.path.join(out_dir, 'rgba.png')
     depth_path = os.path.join(out_dir, 'depth.png')
-    # out_normal = os.path.join(out_dir, 'normal.png')
+    out_normal = os.path.join(out_dir, 'normal.png')
 
     if os.path.exists(rgba_path):
         print(f'[INFO] loading rgba image {rgba_path}...')
@@ -222,10 +222,10 @@ def process_single_image(image_path, depth_estimator, normal_estimator=None):
     depth[~mask] = 0
     depth = (depth * 255).astype(np.uint8)
 
-    # print(f'[INFO] normal estimation...')
-    # normal = normal_estimator(image)[0]
-    # normal = (normal.clip(0, 1) * 255).astype(np.uint8).transpose(1, 2, 0)
-    # normal[~mask] = 0
+    print(f'[INFO] normal estimation...')
+    normal = normal_estimator(image)[0]
+    normal = (normal.clip(0, 1) * 255).astype(np.uint8).transpose(1, 2, 0)
+    normal[~mask] = 0
      
     height, width, _ = image.shape
     # Determine the padding needed to make the image square
@@ -247,9 +247,10 @@ def process_single_image(image_path, depth_estimator, normal_estimator=None):
     image = np.pad(image, padding, mode='constant', constant_values=0)
     rgba = np.pad(rgba, padding, mode='constant', constant_values=0)
     depth = np.pad(depth, padding2d, mode='constant', constant_values=0)
+    normal = np.pad(normal, padding, mode='constant', constant_values=0)
 
     cv2.imwrite(depth_path, depth)
-    # cv2.imwrite(out_normal, cv2.cvtColor(normal, cv2.COLOR_RGB2BGR))
+    cv2.imwrite(out_normal, cv2.cvtColor(normal, cv2.COLOR_RGB2BGR))
     # breakpoint()
     if not os.path.exists(rgba_path):
         cv2.imwrite(rgba_path, cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGRA))
@@ -264,7 +265,7 @@ if __name__ == '__main__':
     opt = parser.parse_args()
 
     depth_estimator = DepthEstimator()
-    # normal_estimator = DPT(task='normal')
+    normal_estimator = DPT(task='normal')
     
     if opt.path is not None:
         paths = opt.path
@@ -275,5 +276,5 @@ if __name__ == '__main__':
                 del paths[exclude_path] 
     for path in paths:
         process_single_image(path, depth_estimator, 
-                            #  normal_estimator
+                             normal_estimator
                              )

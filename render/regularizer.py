@@ -15,7 +15,7 @@ from . import mesh
 
 ######################################################################################
 # Computes the image gradient, useful for kd/ks smoothness losses
-######################################################################################
+# #####################################################################################
 def image_grad(buf, std=0.01):
     t, s = torch.meshgrid(torch.linspace(-1.0 + 1.0 / buf.shape[1], 1.0 - 1.0 / buf.shape[1], buf.shape[1], device="cuda"), 
                           torch.linspace(-1.0 + 1.0 / buf.shape[2], 1.0 - 1.0 / buf.shape[2], buf.shape[2], device="cuda"),
@@ -27,7 +27,7 @@ def image_grad(buf, std=0.01):
 ######################################################################################
 # Computes the avergage edge length of a mesh. 
 # Rough estimate of the tessellation of a mesh. Can be used e.g. to clamp gradients
-######################################################################################
+# #####################################################################################
 def avg_edge_length(v_pos, t_pos_idx):
     e_pos_idx = mesh.compute_edges(t_pos_idx)
     edge_len  = util.length(v_pos[e_pos_idx[:, 0]] - v_pos[e_pos_idx[:, 1]])
@@ -36,7 +36,7 @@ def avg_edge_length(v_pos, t_pos_idx):
 ######################################################################################
 # Laplacian regularization using umbrella operator (Fujiwara / Desbrun).
 # https://mgarland.org/class/geom04/material/smoothing.pdf
-######################################################################################
+# #####################################################################################
 def laplace_regularizer_const(v_pos, t_pos_idx):
     term = torch.zeros_like(v_pos)
     norm = torch.zeros_like(v_pos[..., 0:1])
@@ -60,7 +60,7 @@ def laplace_regularizer_const(v_pos, t_pos_idx):
 
 ######################################################################################
 # Smooth vertex normals
-######################################################################################
+# #####################################################################################
 def normal_consistency(v_pos, t_pos_idx):
     # Compute face normals
     v0 = v_pos[t_pos_idx[:, 0], :]

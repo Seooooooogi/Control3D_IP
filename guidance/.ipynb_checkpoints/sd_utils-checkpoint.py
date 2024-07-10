@@ -171,7 +171,7 @@ class StableDiffusion(nn.Module):
         self.vram_O = vram_O
         self.fp16 = fp16
         self.pil_image = Image.open(image)
-        self.use_plus = False
+        self.use_plus = use_plus
         
         base_model_path = "runwayml/stable-diffusion-v1-5"
 #         base_model_path = "SG161222/Realistic_Vision_V4.0_noVAE"
@@ -833,10 +833,10 @@ class StableDiffusion_control(nn.Module):
         self.vram_O = vram_O
         self.fp16 = fp16
         self.pil_image = Image.open(image)
-        self.use_plus = False
+        self.use_plus = use_plus
         
         depth_model_path = "lllyasviel/control_v11f1p_sd15_depth"
-#         normal_model_path = "lllyasviel/control_v11p_sd15_normalbae"
+        normal_model_path = "lllyasviel/control_v11p_sd15_normalbae"
         
 #         controlnet = ControlNetModel.from_pretrained(depth_model_path, torch_dtype=torch.float16)
         controlnet = ControlNetModel.from_pretrained(depth_model_path, torch_dtype=torch.float16)
@@ -1092,15 +1092,12 @@ class StableDiffusion_control(nn.Module):
             noise_pred = noise_pred_text + guidance_scale * \
                 (noise_pred_text - noise_pred_uncond)
 
-            w = (1 - self.alphas[t])
-            grad = (grad_scale * w)[:, None, None, None] * (noise_pred - noise)
+            w = (1 - self.alphas[t])[:, None, None, None]
+            grad = w * (noise_pred - noise)
             grad = torch.nan_to_num(grad)
             
-#         target = (latents - grad).detach()
-#         loss = 0.5 * F.mse_loss(latents.float(), target, reduction='sum') / latents.shape[0]
-
-        latents.backward(gradient=grad, retain_graph=True)
-        loss = grad.abs().mean().detach()
+        target = (latents - grad).detach()
+        loss = 0.5 * F.mse_loss(latents.float(), target, reduction='sum') / latents.shape[0]
         
         return loss
 
