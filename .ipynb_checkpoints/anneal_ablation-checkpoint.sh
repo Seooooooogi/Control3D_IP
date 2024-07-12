@@ -46,7 +46,7 @@ for i in "${examples[@]}"; do
         --t_range 0.2 0.6 \
         --bg_radius -1 \
         --control \
-        --att_scale 0.5 \
+        --att_scale 1.0 \
         --iters_SD ${j} \
         --save_mesh
     
@@ -71,7 +71,7 @@ for i in "${examples[@]}"; do
         --rm_edge \
         --iters_SD 0 \
         --bg_radius -1 \
-        --att_scale 0.5 \
+        --att_scale 1.0 \
         --save_mesh 
     done
 done
