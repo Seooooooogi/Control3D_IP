@@ -1,4 +1,4 @@
-#!/bin/bash
+                                                                                                                                                                                                                                                                                        #!/bin/bash
 warmups=(
     0
     15
@@ -46,11 +46,11 @@ for i in "${examples[@]}"; do
         --t_range 0.2 0.6 \
         --bg_radius -1 \
         --control \
-        --att_scale 1.0 \
+        --att_scale 0.5 \
         --iters_SD ${j} \
         --save_mesh
     
-        export DATA_DIR='data/nerf4'
+        export DATA_DIR='data/realfusion15'
         export IMAGE_NAME='rgba.png'
         export FILENAME=$(basename $DATA_DIR)
         export dataset=$(basename $(dirname $DATA_DIR))
@@ -71,7 +71,7 @@ for i in "${examples[@]}"; do
         --rm_edge \
         --iters_SD 0 \
         --bg_radius -1 \
-        --att_scale 1.0 \
+        --att_scale 0.5 \
         --save_mesh 
     done
 done

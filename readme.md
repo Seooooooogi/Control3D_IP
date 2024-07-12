@@ -3,9 +3,7 @@
 PyTorch Implementation of Controllable 3D Controllable 3D object Generation with Single Image Prompt. Code is built upon [Magic123](https://github.com/guochengqian/Magic123).
 
 # teaser
-
 https://github.com/user-attachments/assets/37ce73c4-0489-4dcd-9044-71ab4847e0bd
-
 
 # Install
 
@@ -106,7 +104,22 @@ python preprocess_image.py --path /path/to/image
     --att_scale 0.5 \
     --save_mesh 
     ```
+    
+### Run on realfusion15 and nerf4 dataset
+    ```bash
+    bash ours.sh
+    ```
 
+### Run on GSO dataset
+    ```bash
+    bash GSO.sh
+    ```
+
+### Run on CO3D dataset
+    ```bash
+    bash co3d.sh
+    ```
+    
 ### Run ablation studies on depth conditioned warmup strategy
     ```bash
     bash anneal_ablation.sh

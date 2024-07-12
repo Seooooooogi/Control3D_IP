@@ -93,7 +93,7 @@ for i in "${examples[@]}"; do
     --normal_iter_ratio 0.2 \
     --t_range 0.2 0.6 \
     --iters_SD 15 \
-    --att_scale 1.0 \
+    --att_scale 0.5 \
     --control \
     --bg_radius -1 \
     --save_mesh
@@ -118,7 +118,7 @@ for i in "${examples[@]}"; do
     --lambda_guidance 1e-3 0.01\
     --guidance_scale 100 5\
     --iters_SD 0 \
-    --att_scale 1.0 \
+    --att_scale 0.5 \
     --control \
     --rm_edge \
     --bg_radius -1 \
