@@ -74,7 +74,6 @@ examples=(
 )
 
 for i in "${examples[@]}"; do
-    export RUN_ID='baseline_'
     export DATA_DIR='data/nerf4'
     export IMAGE_NAME='rgba.png'
     export FILENAME=$(basename $DATA_DIR)
@@ -98,8 +97,6 @@ for i in "${examples[@]}"; do
     --bg_radius -1 \
     --save_mesh
     
-    export RUN_ID='baseline_'
-    export RUN_ID2='fine'
     export DATA_DIR='data/nerf4'
     export IMAGE_NAME='rgba.png'
     export FILENAME=$(basename $DATA_DIR)
