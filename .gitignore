@@ -10,7 +10,7 @@ debug/
 notinclude/
 scripts/snap
 scripts/paper
-guidance/adapter/models
+guidance/adapter/models/*
 .ipynb_checkpoints 
 
 # */validataion
@@ -27,5 +27,6 @@ trial*/
 TOKEN
 *.ckpt
 *.pt
+*.bin
 densegridencoder
 tets/256_tets.npz

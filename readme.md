@@ -41,7 +41,6 @@ pip install -r requirements.txt
     ```bash 
     cd guidance/adapter/models/
     wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.bin
-    https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sd15.bin
     mkdir image_encoder
     cd image_encoder
     wget https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/pytorch_model.bin
