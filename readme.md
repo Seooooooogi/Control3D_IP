@@ -2,6 +2,9 @@
 
 PyTorch Implementation of Controllable 3D Controllable 3D object Generation with Single Image Prompt. Code is built upon [Magic123](https://github.com/guochengqian/Magic123).
 
+# teaser
+https://https://github.com/Seooooooogi/Control3D_IP/teaser
+
 # Install
 
 ### Install Environment 
