@@ -10,7 +10,8 @@ debug/
 notinclude/
 scripts/snap
 scripts/paper
-guidance/adapter/models 
+guidance/adapter/models
+.ipynb_checkpoints 
 
 # */validataion
 *csv
