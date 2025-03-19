@@ -1,6 +1,7 @@
-# Controllable 3D Controllable 3D object Generation with Single Image Prompt
+# Controllable 3D Controllable 3D object Generation with Single Image Prompt(ICPR 2024)
 
-PyTorch Implementation of Controllable 3D Controllable 3D object Generation with Single Image Prompt. Code is built upon [Magic123](https://github.com/guochengqian/Magic123).
+PyTorch Implementation of Controllable 3D Controllable 3D object Generation with Single Image Prompt. 
+Code is built upon [Magic123](https://github.com/guochengqian/Magic123).
 
 # teaser
 https://github.com/user-attachments/assets/37ce73c4-0489-4dcd-9044-71ab4847e0bd
